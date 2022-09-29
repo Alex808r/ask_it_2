@@ -1,0 +1,11 @@
+<main class="container mt-3">
+  <% flash.each do |key, value| %>
+    <%if key == "notice" || key == "alert"  %>
+      <div>
+        <%= tag.div value, class: "alert alert-info", role: 'alert' %>
+    <% else %>
+      <%= tag.div value, class: "alert alert-#{key}", role: 'alert' %>
+      </div>
+    <% end %>
+  <% end %>
+</main>
