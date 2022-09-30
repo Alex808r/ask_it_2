@@ -1,3 +1,6 @@
+<% provide :page_title, 'Question' %>
+
+
 <h1 class="mb-4"><%= @question.title %></h1>
 
 <time datetime="<%= @question.formatted_created_at %>">
@@ -17,7 +20,6 @@
 
 <h2 class="mb-4"> Write your answer: </h2>
 
-<%= render 'shared/errors', object: @answer %>
 <%= render 'answers/form' %>
 <%= render 'answers/index' %>
 
