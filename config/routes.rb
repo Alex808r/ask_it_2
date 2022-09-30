@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # post '/questions', to: 'questions#create'
   # get '/questions/:id/edit', to: 'questions#edit'
 
-  resources :questions, only: %i[index new edit create update destroy show]
+  resources :questions, only: %i[index new edit create update destroy show] do
+    resources :answers, only: %i[create destroy]
+  end
 
 end
