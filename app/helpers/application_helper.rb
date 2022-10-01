@@ -1,4 +1,7 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
+
   def full_title(page_title = "")
     base_title = 'AskIt2'
     if page_title.present?

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     resources :answers, except: %i[new show]
   end
 
+  resources :users, only: %i[new create]
+
 end
