@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :answers, except: %i[new show]
   end
 
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create edit update]
+
+  resource :session, only: %i[new create destroy]
 
 end

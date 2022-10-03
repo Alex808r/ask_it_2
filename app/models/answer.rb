@@ -3,7 +3,8 @@ class Answer < ApplicationRecord
   
   validates :body, presence: true, length: { minimum: 5 }
 
-  def formatted_created_at
-    created_at.strftime('%d-%m-%y %H:%M:%S')
-  end
+  # in decorate
+  # def formatted_created_at
+  #   created_at.strftime('%d-%m-%y %H:%M:%S')
+  # end
 end
