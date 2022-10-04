@@ -1,0 +1,40 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'config/initializers/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
