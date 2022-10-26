@@ -24,15 +24,17 @@ class SessionsController < ApplicationController
     user = User.find_by email: params[:email]
     if user&.authenticate(params[:password])
       do_sign_in user
+      flash[:success] = t('.success', name: current_user.name_or_email)
+      redirect_to root_path
     else
-      flash.now[:warning] = 'Incorrect email and/or password!'
+      flash.now[:warning] = t '.invalid_creds'
       render :new
     end
   end
 
   def destroy
     sign_out
-    flash.now[:success] = 'See you later!'
+    flash[:success] = t '.success'
     redirect_to root_path
   end
 
