@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
     @pagy, @questions = pagy Question.order(created_at: :desc)
     @questions = @questions.decorate
     # @questions = Question.order(created_at: :desc).page params[:page]
+    # debugger
   end
 
   def show
@@ -45,7 +46,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    flash[:success] = 'Question destroy!'
+    flash[:success] = t('.success')
     redirect_to(questions_path)
   end
 
