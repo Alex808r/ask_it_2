@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
 
   def create
     # render plain: params
-    @answer = @question.answers.build(answer_params)
+    @answer = @question.answers.build(answer_create_params)
     if @answer.save
       flash[:success] = 'Answer created!'
       redirect_to(question_path(@question))
@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if @answer.update(answer_params)
+    if @answer.update(answer_update_params)
       flash[:success] = 'Answer updated!'
       redirect_to(question_path(@question, anchor: "answer-#{@answer.id}"))
     else
@@ -36,7 +36,11 @@ class AnswersController < ApplicationController
 
   private
 
-  def answer_params
+  def answer_create_params
+    params.require(:answer).permit( :body).merge(user: current_user)
+  end
+
+  def answer_update_params
     params.require(:answer).permit( :body)
   end
 

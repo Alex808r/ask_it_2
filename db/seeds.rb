@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-30.times do
-  title = Faker::Hipster.sentence(word_count: 3)
-  body = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true, random_sentences_to_add: 4) #=> "Vomito unde uxor annus. Et patior utilis sursum."
-  Question.create(title: title, body: body)
-end
+# 30.times do
+#   title = Faker::Hipster.sentence(word_count: 3)
+#   body = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true, random_sentences_to_add: 4) #=> "Vomito unde uxor annus. Et patior utilis sursum."
+#   Question.create(title: title, body: body)
+# end
+
+User.find_each { |user| user.send(:set_gravatar_hash); user.save }

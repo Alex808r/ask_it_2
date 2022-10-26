@@ -23,13 +23,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    render plain: params.to_yaml
-    # if @user.update(user_params)
-    #   flash[:success] = 'Profile was succseccfully updated!'
-    #   redirect_to edit_users_path(@user)
-    # else
-    #   render :edit
-    # end
+    # render plain: params.to_yaml
+    if @user.update(user_params)
+      flash[:success] = 'Profile was succseccfully updated!'
+      redirect_to edit_user_path(@user)
+    else
+      render :edit
+    end
   end
 
 

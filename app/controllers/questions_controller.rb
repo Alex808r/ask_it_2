@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
 
   def create
     # render plain: params
-    @question = Question.new(question_params)
+    @question = current_user.questions.build(question_params)
     if @question.save
       flash[:success] = 'Question created!'
       redirect_to(questions_path)
