@@ -2,12 +2,13 @@ class QuestionsController < ApplicationController
   include QuestionsAnswers
 
   before_action :set_question!, only: %i[show edit update destroy]
+  before_action :fetch_tags, only: %i[new edit]
 
   def index
-    @pagy, @questions = pagy Question.order.includes(:user).(created_at: :desc)
+    @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids])
+    # @pagy, @questions = pagy Question.includes(:user, :question_tags, :tags).order(created_at: :desc)
     @questions = @questions.decorate
     # @questions = Question.order(created_at: :desc).page params[:page]
-    # debugger
   end
 
   def show
@@ -55,12 +56,16 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, tag_ids: [])
   end
 
   def set_question!
     @question = Question.find(params[:id]) # RecordNotFound если запись не найдена.
     # @question = Question.find_by(id: params[:id]) аналогичная запись/ Если вопрос с id не будет найден, получим ошибку
     # NoMethodError. Поэтому лучше использовать Question.find(params[:id])
+  end
+
+  def fetch_tags
+    @tags = Tag.all
   end
 end

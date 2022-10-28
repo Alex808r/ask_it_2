@@ -11,6 +11,7 @@ import "channels"
 import '@popperjs/core'
 import 'bootstrap/js/dist/dropdown'
 import 'bootstrap/js/dist/collapse'
+import './scripts/select2.js'
 
 Rails.start()
 Turbolinks.start()
