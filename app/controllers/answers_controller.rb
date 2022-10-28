@@ -1,4 +1,7 @@
 class AnswersController < ApplicationController
+  include QuestionsAnswers
+  include ActionView::RecordIdentifier
+
   before_action :set_question!
   before_action :set_answer!, except: %i[create]
 
@@ -9,10 +12,11 @@ class AnswersController < ApplicationController
       flash[:success] = 'Answer created!'
       redirect_to(question_path(@question))
     else
-      @question = @question.decorate
-      @pagy, @answers = pagy @question.answers.order created_at: :desc
-      @answers = @answers.decorate
-      render 'questions/show'
+      load_question_answers(do_render: true)
+      # @question = @question.decorate
+      # @pagy, @answers = pagy @question.answers.order created_at: :desc
+      # @answers = @answers.decorate
+      # render 'questions/show'
     end
   end
 
@@ -22,7 +26,8 @@ class AnswersController < ApplicationController
   def update
     if @answer.update(answer_update_params)
       flash[:success] = 'Answer updated!'
-      redirect_to(question_path(@question, anchor: "answer-#{@answer.id}"))
+      redirect_to(question_path(@question, anchor: "answer-#{@answer.id}")) # или redirect_to question_path(@question, anchor: dom_id(@answer))
+      #
     else
       render :edit
     end
