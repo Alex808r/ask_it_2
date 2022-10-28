@@ -10,6 +10,8 @@ ru:
       question:
         body: Текст
         title: Заголовок
+        tags: Теги
+        tag_ids: Теги
       user:
         created_at: Создан
         email: Email
@@ -18,13 +20,28 @@ ru:
         password: Пароль
         password_confirmation: Подтверждение пароля
         updated_at: Обновлён
+        role: Роль
     models:
       question: Вопрос
   admin:
+    user_mailer:
+      bulk_import_done:
+        subject: Импорт пользователей завершён | AskIt
+      bulk_import_fail:
+        subject: Импорт пользователей не удался | AskIt
+      bulk_export_done:
+        subject: Экспорт пользователей завершён | AskIt
     users:
+      edit:
+        title: Редактирование пользователя
+      destroy:
+        success: Пользователь удалён!
+      update:
+        success: Пользователь обновлён!
       create:
-        success: Пользователи загружены!
+        success: Вы получите письмо, когда операция завершится
       index:
+        success: Вы получите письмо, когда операция завершится
         download_zipped: Загрузить архив с XLSX
         title: Управление пользователями
         upload_form:
@@ -46,7 +63,30 @@ ru:
     update:
       success: Ответ обновлён!
   en: Английский
+  password_resets:
+    fail: Не удалось сбросить ваш пароль...
+    edit:
+      title: Выберите новый пароль
+      form:
+        submit: Сбросить пароль!
+    update:
+      success: Ваш пароль был сброшен!
+    create:
+      success: Инструкции были отправлены на ваш адрес.
+    new:
+      title: Сбросить пароль
+      form:
+        email: Email
+        submit: Отправить инструкции для сброса пароля
+        back: Назад ко входу в систему
   global:
+    errors:
+      invalid_format: имеет неверный формат
+    user:
+      roles:
+        basic: Базовый
+        moderator: Модератор
+        admin: Админ
     button:
       delete: Удалить
       edit: Изменить
@@ -57,6 +97,7 @@ ru:
     flash:
       already_signed_in: Вы уже вошли в систему!
       not_signed_in: Вы не вошли в систему!
+      not_authorized: У вас нет прав на выполнение этого действия!
     text:
       omission: "... (далее)"
   menu:
@@ -80,6 +121,7 @@ ru:
     index:
       new: Новый вопрос
       title: Вопросы
+      search_by_tags: Поиск по тегам
     new:
       title: Новый вопрос
     show:
@@ -89,6 +131,9 @@ ru:
     update:
       success: Вопрос обновлён!
   ru: Русский
+  password_reset_mailer:
+    reset_email:
+      subject: 'Сброс пароля | AskIt'
   sessions:
     create:
       invalid_creds: Неверный email и/или пароль!
@@ -101,6 +146,7 @@ ru:
         password: Пароль
         remember_me: Запомнить меня
         submit: Войти!
+        forgot_password: Я забыл пароль
       title: Войти
   users:
     create:
