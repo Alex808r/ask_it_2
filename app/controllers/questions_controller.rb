@@ -1,19 +1,21 @@
 class QuestionsController < ApplicationController
+  include QuestionsAnswers
 
   before_action :set_question!, only: %i[show edit update destroy]
 
   def index
-    @pagy, @questions = pagy Question.order(created_at: :desc)
+    @pagy, @questions = pagy Question.order.includes(:user).(created_at: :desc)
     @questions = @questions.decorate
     # @questions = Question.order(created_at: :desc).page params[:page]
     # debugger
   end
 
   def show
-    @question = @question.decorate
-    @answer = @question.answers.build
-    @pagy, @answers = pagy @question.answers.order(created_at: :desc)
-    @answers = @answers.decorate
+    load_question_answers
+    # @question = @question.decorate
+    # @answer = @question.answers.build
+    # @pagy, @answers = pagy @question.answers.order(created_at: :desc)
+    # @answers = @answers.decorate
     # @answers = @question.answers.order(created_at: :desc).page(params[:page]).per(3)
   end
 

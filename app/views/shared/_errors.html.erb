@@ -1,5 +1,5 @@
 <div>
-  <% if object.errors.any?%>
+  <% if object&.errors.any?%>
     <% object.errors.full_messages.each do |msg| %>
       <div class="alert alert-danger"> <%= msg %> </div>
     <% end %>
