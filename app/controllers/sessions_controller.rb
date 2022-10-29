@@ -26,6 +26,7 @@ class SessionsController < ApplicationController
       do_sign_in user
       flash[:success] = t('.success', name: current_user.name_or_email)
       redirect_to root_path
+
     else
       flash.now[:warning] = t '.invalid_creds'
       render :new
@@ -43,7 +44,5 @@ class SessionsController < ApplicationController
   def do_sign_in(user)
     sign_in user
     remember(user) if params[:remember_me] == '1'
-    flash[:success] = "Welcome back, #{current_user.name_or_email}!"
-    redirect_to root_path
   end
 end

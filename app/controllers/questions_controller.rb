@@ -5,10 +5,13 @@ class QuestionsController < ApplicationController
   before_action :fetch_tags, only: %i[new edit]
 
   def index
-    @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids])
+    # @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids])
     # @pagy, @questions = pagy Question.includes(:user, :question_tags, :tags).order(created_at: :desc)
-    @questions = @questions.decorate
+    # @questions = @questions.decorate
     # @questions = Question.order(created_at: :desc).page params[:page]
+    @tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
+    @pagy, @questions = pagy Question.all_by_tags(@tags)
+    @questions = @questions.decorate
   end
 
   def show
