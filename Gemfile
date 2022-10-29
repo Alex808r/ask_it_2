@@ -42,6 +42,8 @@ gem 'activerecord-import', '~> 1.2'
 
 gem 'rails-i18n', '~>6'
 
+gem 'blueprinter' # serializer
+
 
 
 group :development, :test do
