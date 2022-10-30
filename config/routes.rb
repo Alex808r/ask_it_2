@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       resources :answers, except: %i[new show]
     end
 
+    resource :password_reset, only: %i[new create edit update]
+
     resources :answers, except: %i[new show], concerns: :commentable
 
     resources :users, only: %i[new create edit update]
