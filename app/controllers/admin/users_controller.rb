@@ -1,6 +1,8 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   before_action :require_authentication
   before_action :set_user!, only: %i[edit update destroy]
+  before_action :authorize_user!
+  after_action :verify_authorized
 
   def index
     respond_to do |format|
@@ -67,5 +69,9 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :name, :password, :password_confirmation, :role).merge(admin_edit: true)
+  end
+  def authorize_user!
+    authorize(@user || User)
+    # authorize([:admin, @user] || User) если не переопределять метод authorize в BaseController
   end
 end

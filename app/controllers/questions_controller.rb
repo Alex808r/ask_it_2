@@ -1,9 +1,10 @@
 class QuestionsController < ApplicationController
   include QuestionsAnswers
-
+  before_action :require_authentication, except: %i[show index]
   before_action :set_question!, only: %i[show edit update destroy]
-  before_action :fetch_tags, only: %i[new edit]
-
+  # before_action :fetch_tags, only: %i[new edit]
+  before_action :authorize_question!
+  after_action :verify_authorized # доступен из Pandit
   def index
     # @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids])
     # @pagy, @questions = pagy Question.includes(:user, :question_tags, :tags).order(created_at: :desc)
@@ -70,5 +71,9 @@ class QuestionsController < ApplicationController
 
   def fetch_tags
     @tags = Tag.all
+  end
+
+  def authorize_question!
+    authorize(@question || Question)
   end
 end

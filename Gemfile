@@ -42,8 +42,11 @@ gem 'activerecord-import', '~> 1.2'
 
 gem 'rails-i18n', '~>6'
 
-gem 'blueprinter' # serializer
+gem 'blueprinter', '~> 0.25' # serializer
 
+gem 'lokalise_rails', '~> 3'
+
+gem 'pundit', '~> 2.1'
 
 
 group :development, :test do
