@@ -44,7 +44,7 @@ gem 'rails-i18n', '~>6'
 
 gem 'blueprinter', '~> 0.25' # serializer
 
-gem 'lokalise_rails', '~> 3'
+# gem 'lokalise_rails', '~> 3'
 
 gem 'pundit', '~> 2.1'
 
@@ -71,6 +71,7 @@ group :development do
   gem 'rubocop-rails', '~> 2.11', require: false
 
   gem 'bullet'
+  gem 'letter_opener'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

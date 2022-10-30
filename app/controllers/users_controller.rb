@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def authorize_question!
+  def authorize_user!
     authorize(@user || User)
   end
 end
