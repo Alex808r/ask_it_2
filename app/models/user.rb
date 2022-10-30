@@ -14,8 +14,17 @@ class User < ApplicationRecord
   validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit }
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
+  validates :role, presence: true
 
   before_save :set_gravatar_hash, if: :email_changed?
+
+  def author?(obj)
+    obj.user == self
+  end
+
+  def guest?
+    false
+  end
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64

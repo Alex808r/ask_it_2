@@ -1,4 +1,5 @@
 class Question < ApplicationRecord
+  include Authorship
   include Commentable
 
   has_many :question_tags, dependent: :destroy

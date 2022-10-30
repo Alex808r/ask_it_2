@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include Authentication
   include Internationalization
+  include Authorization
 
 
   # Вынесли в Concerns
