@@ -47,7 +47,6 @@ gem 'blueprinter', '~> 0.25' # serializer
 # gem 'lokalise_rails', '~> 3'
 
 gem 'pundit', '~> 2.1'
-gem 'sidekiq', '~> 6'
 
 
 group :development, :test do
